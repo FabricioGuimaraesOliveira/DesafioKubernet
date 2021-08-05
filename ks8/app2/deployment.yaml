@@ -1,0 +1,17 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cronjob-client-app
+spec:
+  schedule: "*/3 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: client-app
+            image: client-app
+            imagePullPolicy: Never
+            args: ["api-spring", "testeserver"]
+            
+          restartPolicy: OnFailure
